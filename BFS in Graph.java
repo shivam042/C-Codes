@@ -40,12 +40,14 @@ class Graph
         int s;
         Queue<Integer> queue=new LinkedList<>();
         boolean visited[] = new boolean[v];
-        
+        int distance[] = new int[v];
+        int parent[] = new int[v];
         visited[src]=true;
         queue.add(src);
         while(!queue.isEmpty())
         {
             s = queue.poll();
+            
             System.out.print(s+" ");
             /*Iterator<Integer> i = a[s].listIterator();
             while (i.hasNext())
@@ -62,16 +64,25 @@ class Graph
                 int n = i;
                 if (!visited[n])
                 {
+                    distance[i]=distance[s]+1;
+                    parent[i]=s;
                     visited[n] = true;
                     queue.add(n);
                 }
             }
             
         }
-        System.out.println(Arrays.toString(visited));
+        //Shortest Path in Graph using BFS for unweighted graph
+        //Assuming it takes 1 second to traverse adjacent nodes
+        //In BFS whenever we visit node first time that will give us shortest path of that node from starting node 
+        System.out.println("Mininum Distance Required to reach:");
+        System.out.println(Arrays.toString(distance));
+        System.out.println("Parent Node");
+        System.out.println(Arrays.toString(parent));
     }
    
 }
+
 class demo{
    
     public static void main(String args[])
@@ -86,7 +97,8 @@ class demo{
         graph.addEdge(1,4);
         graph.addEdge(2,3);
         graph.addEdge(3,4);
-        graph.BFS(1);
+        System.out.println("Graph Traversal using BFS");
+        graph.BFS(0);
         // print the adjacency list representation of
         // the above graph
         //graph.printGraph();

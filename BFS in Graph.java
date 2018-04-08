@@ -1,12 +1,9 @@
-import java.util.Arrays;
-import java.util.Iterator;
-import java.util.LinkedList;
-import java.util.Queue;
+import java.util.*;
 class Graph
 {
     int v;
     LinkedList<Integer> a[];
-    //=new LinkedList[5];
+ 
     Graph(int v)
     {
       
@@ -35,7 +32,7 @@ class Graph
             System.out.println("\n");
         }
     }
-    void BFS(int src)
+    void BFS(int src,int dest)
     {
         int s;
         Queue<Integer> queue=new LinkedList<>();
@@ -79,6 +76,15 @@ class Graph
         System.out.println(Arrays.toString(distance));
         System.out.println("Parent Node");
         System.out.println(Arrays.toString(parent));
+        //Shortest Path
+        System.out.println("Shortest Path");
+        int temp=dest;
+        while(temp!=src)
+        {
+            System.out.print(temp+"<--");
+            temp=parent[temp];
+        }
+        System.out.print(src);
     }
    
 }
@@ -91,14 +97,14 @@ class demo{
         int V = 5;
         Graph graph = new Graph(V);
         graph.addEdge(0,1);
-        graph.addEdge(0,4);
+        graph.addEdge(0,3);
         graph.addEdge(1,2);
         graph.addEdge(1,3);
         graph.addEdge(1,4);
         graph.addEdge(2,3);
         graph.addEdge(3,4);
         System.out.println("Graph Traversal using BFS");
-        graph.BFS(0);
+        graph.BFS(0,2);
         // print the adjacency list representation of
         // the above graph
         //graph.printGraph();
